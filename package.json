@@ -1,0 +1,26 @@
+{
+  "name": "stats-crop-sites",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "playwright": "^1.30.0",
+    "standard": "^17.0.0"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "rules": {
+      "semi": [
+        2,
+        "always"
+      ]
+    }
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}

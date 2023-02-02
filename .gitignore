@@ -102,3 +102,14 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Playwhright
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Temp files
+page.html
+
+# Private files
+credentials.json
