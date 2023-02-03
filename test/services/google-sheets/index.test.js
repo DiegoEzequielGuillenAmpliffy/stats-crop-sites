@@ -1,6 +1,6 @@
-const { getAuth, getSpreadSheet, getSpreadSheetValues, appendSpreadSheetValues } = require('../../google-sheets/googleSheetsService.js');
+const { getAuth, getSpreadSheet, getSpreadSheetValues, appendSpreadSheetValues } = require('../../../services/google-sheets');
 
-const config = require('../../config.js');
+const config = require('../../../config.js');
 const { SPREAD_SHEET_ID } = config;
 
 async function main () {
@@ -56,7 +56,7 @@ async function main () {
   };
 
   try {
-    const response = await appendSpreadSheetValues(request);
+    const response = await appendSpreadSheetValues(values);
     // TODO: Change code below to process the `response` object:
     console.log(JSON.stringify(response, null, 2));
   } catch (err) {
