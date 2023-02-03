@@ -40,6 +40,11 @@ async function setSpreadSheet (spreadsheetId, sheetId, startIndex, endIndex) {
   console.info(res);
 }
 
+async function appendSpreadSheetValues (request) {
+  const res = await sheets.spreadsheets.values.append(request);
+  return res.data;
+}
+
 async function getSpreadSheet ({ spreadsheetId }) {
   const res = await sheets.spreadsheets.get({ spreadsheetId });
   return res;
@@ -52,5 +57,6 @@ async function getSpreadSheetValues (params) {
 module.exports = {
   getAuth,
   getSpreadSheet,
-  getSpreadSheetValues
+  getSpreadSheetValues,
+  appendSpreadSheetValues
 };
