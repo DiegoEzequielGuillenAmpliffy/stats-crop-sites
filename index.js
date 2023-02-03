@@ -1,8 +1,9 @@
-const { scrape } = require('./services/scraping');
+const { multiScrape } = require('./services/scraping');
 const { appendSpreadSheetValues } = require('./services/google-sheets');
 
 async function main () {
-  const data = await scrape();
+  const number = 1000;
+  const data = await multiScrape('', number);
   return await appendSpreadSheetValues(data);
 }
 main();
