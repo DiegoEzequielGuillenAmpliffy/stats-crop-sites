@@ -44,37 +44,13 @@ async function getSpreadSheet ({ spreadsheetId }) {
   const res = await sheets.spreadsheets.get({ spreadsheetId });
   return res;
 }
-async function getSpreadSheetValues ({ spreadsheetId, sheetName }) {
-  const res = await sheets.spreadsheets.values.get({ spreadsheetId, range: sheetName });
-  return res;
+async function getSpreadSheetValues (params) {
+  const res = await sheets.spreadsheets.values.get(params);
+  return res.data.values;
 }
 
-function getListMajors (spreadsheetId, range) {
-  // const sheets = google.sheets('v4');
-  // open();
-  sheets.spreadsheets.values.get(
-    {
-      // auth, // : this.authorizeUrl,
-      spreadsheetId,
-      range
-    },
-    (err, res) => {
-      if (err) {
-        console.error('The API returned an error.');
-        throw err;
-      }
-      const rows = res.data.values;
-      if (rows.length === 0) {
-        console.log('No data found.');
-      } else {
-        console.log('Name, Major:');
-        for (const row of rows) {
-          // Print columns A and E, which correspond to indices 0 and 4.
-          console.log(`${row[0]}, ${row[4]}`);
-        }
-      }
-    }
-  );
-}
-
-module.exports = { getAuth, getSpreadSheet, getSpreadSheetValues, getListMayors };
+module.exports = {
+  getAuth,
+  getSpreadSheet,
+  getSpreadSheetValues
+};
