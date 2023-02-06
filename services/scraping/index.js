@@ -7,13 +7,13 @@ const data = [];
 
 async function scrape (uri) {
   if (!uri) uri = URI;
-  console.log(uri);
   const browser = await chromium.launch({
     headless: true, args: ['--no-sandbox']
   });
   const context = await browser.newContext();
   const page = await context.newPage();
-  await page.goto(uri);
+  await page.setDefaultNavigationTimeout(0);
+  await page.goto(uri, { timeout: 0 });
   await page.waitForLoadState('networkidle');
   let length = 0;
   let items;
@@ -22,7 +22,6 @@ async function scrape (uri) {
     await page.waitForLoadState('networkidle');
     items = await page.$$('.tr');
     length = items.length;
-    console.log(length);
   }
   for (let i = 0; i < 1000; i++) {
     const item = items[i];
@@ -42,8 +41,10 @@ async function scrape (uri) {
 
 async function multiScrape (uri, number) {
   if (!uri) uri = URI;
-  return await scrape(uri + '/' + number * 1 + '/');
-  // return await scrape(uri + '/' + number * 2 + '/');
+  for (let i = 1; i <= number; i++) {
+    await scrape(uri + '/' + 1000 * i + '/');
+  }
+  return data;
 }
 
 module.exports = {
